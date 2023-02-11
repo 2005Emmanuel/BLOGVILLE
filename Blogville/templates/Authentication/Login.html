@@ -1,0 +1,97 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"><link/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kavoon&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <title>BLOGVILLE</title>
+    <head/>
+    <body style="background-color:white;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="id">
+            <div class="container-fluid">
+                {% comment %} {% load static %}
+                <img src="{% static 'images/fire-dynamic-color.png' %}" id="logo"> {% endcomment %}
+              <h1 class="navbar-brand" style=" font-family: 'Kavoon', cursive; font-size:30px; color:#03071e">BLOGVILLE</h1>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" id="nav-btn">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 " style="cursor:pointer">
+                  {% comment %} <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li> {% endcomment %}
+                  {% if user.is_authenticated %}
+              
+
+                  {% else %}
+
+                  <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalLoginForm">Home</a>
+                  </li>
+
+                   <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalLoginForm">Login</a>
+                  </li>
+
+              {% endif %}
+          </nav>
+
+       
+          {% for message in messages %}
+          <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+          </div>
+        {% endfor %}
+     
+          <form action="/Login/" method="POST"> {% csrf_token %}
+            <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                      <i class="fas fa-envelope prefix grey-text"></i>
+                      <label for="username" class="form-label">Username</label>
+                      <input type="text" class="form-control" id="username" name="username">
+                    </div>
+            
+                    <div class="md-form mb-4">
+                      <i class="fas fa-lock prefix grey-text"></i>
+                      <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+                    </div>
+            
+                  </div>
+                  <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-default"  type="submit">Login</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </form>
+            {% comment %} <div class="text-center">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLoginForm">
+                  Log in to your Account
+                </button>
+              </div> {% endcomment %}
+           
+    <body/>
+<html/>
