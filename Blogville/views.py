@@ -94,7 +94,7 @@ def add_Blog(request):
             blogpost.save()
             obj = form.instance
             alert = True
-            return render(request, 'blog/add_blog.html', {'obj' : obj, 'alert' : alert})
+            return render(request, 'Home_page/index.html', {'obj' : obj, 'alert' : alert})
     else:
             form = BlogPostForm()
             return render(request, 'blog/add_blog.html', {'form' : form})
@@ -201,6 +201,15 @@ def Delete_Comment(request,  user_id):
     
 
 
+# from django.core.mail import send_mail
+
+# send_mail(
+#     'Subject here',
+#     'Here is the message.',
+#     'hilaryemmanuel841@gmail.com',
+#     ['ehilary689@yahoo.com'],
+#     fail_silently=False,
+# )
 
 
 

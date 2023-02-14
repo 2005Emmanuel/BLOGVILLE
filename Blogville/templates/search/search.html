@@ -1,3 +1,4 @@
+{% load social_share %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -82,48 +83,85 @@
 
     <div class="row">
         {% for blog in blogs %}
-        <div class="col-lg-4 my-4">
-            <div class="card shadow" style="width: 20rem; height: 33rem;">
-                <img src="/media/{{blog.image}}" class="card-img-top" alt="..." height="250px">
-                <div class="card-body">
-                  <h5 class="card-title">{{blog.title}} <br><small>by {{post.author}}</small></h5>
-                  <p class="card-text">{{blog.content| truncatechars:100}}</p>
-                  <h5 class="card-title text-bold" > <a href="/user_profile/{{blog.author.id}}/" class="text-decoration-none" style="color:black"> <br><small>
+        <div class="col-lg-4 my-4 col-md-6  ">
+          <div class="card " style="width: 20rem; height: 33rem; border-radius: 50px;">
+              <img src="/media/{{blog.image}}" class="card-img-top" alt="..." height="250px">
+              <div class="card-body">
+                <h5 class="card-title">{{blog.title}} <br><small>by {{blog.author}}</small></h5>
+                <p class="card-text">{{blog.content| truncatechars:100}}</p>
+                <h5 class="card-title text-bold" > <a href="/user_profile/{{blog.author.id}}/" class="text-decoration-none" style="color:black"> <br><small>
+              
+                 
+                  {% if blog.author.profile.image %}
+                  <img src="{{blog.author.profile.image.url}}" alt="" width="30px" height="30px" class="rounded-circle">
+                  {% endif %}{{blog.author}}   
+                </small> </a>
+                {% if user.is_authenticated %}
+               
+                <form action="{% url 'blogpost_like' blog.id %}" method="POST">
+                  {% csrf_token %}
+              
+                 
+                  <button type="submit" name="blogpost_id" value="{{blog.id}}" style="border:none; background-color:transparent; color:gray">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                  </button>
                 
-                   
-                    {% if blog.author.profile.image %}
-                    <img src="{{blog.author.profile.image.url}}" alt="" width="30px" height="30px" class="rounded-circle">
-                    {% endif %}{{blog.author}}   
-                  </small> </a>
-          
-                  {% if user.is_authenticated %}
-                  <form action="{% url 'blogpost_like' blog.id %}" method="POST">
-                    {% csrf_token %}
+                  <button type="submit" name="blogpost_id" value="{{blog.id}}" style="border:none; background-color:transparent; color:gray">
+                    <i class="fa-solid fa-thumbs-down"></i>
+                  </button>
                 
-                   
-                    <button type="submit" name="blogpost_id" value="{{blog.id}}" style="border:none; background-color:transparent;  color:gray">
-                      <i class="fa-solid fa-thumbs-up"></i>
-                    </button>
-                  
-                    <button type="submit" name="blogpost_id" value="{{blog.id}}" style="border:none; background-color:transparent;  color:gray">
-                      <i class="fa-solid fa-thumbs-down"></i>
-                    </button>
-                
-                  </form>
-                {% else %}
-                  <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this article!</a><br>
-                {% endif %}
-                <strong class="text-secondary">{{blog.number_of_likes}} Like{{ number_of_likes|pluralize }}</strong>
-                </h5>
-                  <a href="/blog/{{blog.slug}}" class="btn btn-primary">Read More {% if user.is_superuser %}<a href="/delete_blog_post/{{blog.slug}}/" class="btn btn-danger mx-4">Delete Blog</a>{% endif %}</a>
-                </div>
+                  {% comment %} <button href="/blog/{{post.slug}}/" style="border:none; background-color:transparent; color:gray"> {% endcomment %}
+                    <a href="/blog/{{blog.slug}}/" style="background-color:transparent; color:gray"><i class="fa-solid fa-comment"></i></a>
+              
+                </form>
+                <!-- Button trigger modal -->
+
+
+
+              {% else %}
+                <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this article!</a><br>
+              {% endif %}
+              <h6 class="text-secondary">{{postblog..number_of_likes}} Likes{{ number_of_likes|pluralize }}</h6>
+              <button type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal" style="border:none; background-color:transparent; color:gray">
+                <i class="fa-solid fa-share"></i>
+              </button>
+
+              </h5>  
+              {% if user.is_authenticated %}
+              {% if user.id == blog.author.id %}
+              <a href="delete_blog_post/{{blog.slug}}/" class="btn btn-danger mx-4">Delete Blog</a>
+              {% endif %}
+              {% endif %}     
+                <a href="blog/{{blog.slug}}" class="btn btn-primary">Read More {% if user.is_superuser %}<a href="delete_blog_post/{{blog.slug}}/" class="btn btn-danger mx-4">Delete Blog</a>{% endif %}</a>
               </div>
-        </div>
-        {% endfor %}
-    </div>
+            </div>
+      </div>
+      {% endfor %}
+      {% comment %} {% endif %} {% endcomment %}
+  </div>
+</div>
 </div>
 {% else %}
 <h1>You forgot to search</h1>
 {% endif %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Share blogpost</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {% post_to_facebook object_or_url '<i class="fa-solid fa-share-from-square"></i>share on facebook'%}
+            {% post_to_twitter "New song: {{object.title}}. check it out!" object_or_url   '<i class="fa-solid fa-share-from-square"></i>share on twitter'%}
+            {% post_to_whatsapp object_or_url '<i class="fa-solid fa-share-from-square"></i>share on whatsapp' %}
+            {% comment %} {% post_to_facebook object_or_url '<i class="fa-solid fa-share-from-square"></i>share to facebook' %} {% endcomment %}
+          </div>
+         
+        </div>
+      </div>
+    </div>
         </body>
         </html>

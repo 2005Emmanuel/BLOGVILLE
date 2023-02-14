@@ -15,12 +15,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <title>BLOGVILLE</title>
     <head/>
-    <body style="background-color:white;">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="id">
+    <body style="background-white; color:black">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="id" >
             <div class="container-fluid">
                 {% comment %} {% load static %}
                 <img src="{% static 'images/fire-dynamic-color.png' %}" id="logo"> {% endcomment %}
-              <h1 class="navbar-brand" style=" font-family: 'Kavoon', cursive; font-size:30px; color:#03071e">BLOGVILLE</h1>
+              <h1 class="navbar-brand" style=" font-family: 'Kavoon', cursive; font-size:30px; ">BLOGVILLE</h1>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" id="nav-btn">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -30,12 +30,12 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                   </li> {% endcomment %}
                   {% if user.is_authenticated %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="/add_Blog/">Add blog</a>
+                  <li class="nav-item ">
+                    <a class="nav-link " href="/add_Blog/">Add blog</a>
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="/profile/">
+                    <a class="nav-link " href="/profile/">
                     {% if user.profile.image %}
                     <img src="{{user.profile.image.url}}" alt="" width="30px" height="30px" class="rounded-circle">
                     {% else %}
@@ -49,7 +49,7 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="/Logout/">Logout</a>
+                    <a class="nav-link " href="/Logout/">Logout</a>
                   </li>
 
                   {% else %}
@@ -78,8 +78,8 @@
           </nav>
 {% block body %}
 {% load humanize %}
-<div class="container w-75 my-4">
-      <h2 class="blog-post-title">{{post.title}}</h2>
+<div class="container w-75 my-4 " id="c1">
+      <h2 class="blog-post-title " >{{post.title}}</h2>
       <br>
       <div class="media">
             {% if post.author.profile.image %}
@@ -143,7 +143,8 @@
                   <h2>All Comments ({{comments.count}})</h2>
                   <br>
                   {% for comment in comments %}
-                  <div class="card rounded" >
+                  
+                  <div class="card rounded" style="background-color:gray; color:white">
                         <div class="card-header">
                          <a href="/user_profile/{{comment.user.id}}/" class="text-decoration-none" style="color:black"> {% if comment.user.profile.image %}
                           <img src="{{comment.user.profile.image.url}}" alt="" width="30px" height="30px" class="rounded-circle">

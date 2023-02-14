@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django.contrib.humanize',
     'social_django',
+    'django_social_share',
 ]
 
 MIDDLEWARE = [
@@ -77,11 +78,21 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+     'default' : {
+         'ENGINE' : 'django.db.backends.postgresql',
+         'NAME': 'railway',
+         'USER': 'postgres',
+         'PASSWORD': '18BAmqiyI84768HIfCXJ',
+         'HOST' : 'containers-us-west-46.railway.app',
+         'PORT' : '6629',
+     }
 }
 
 
@@ -123,6 +134,7 @@ STATIC_URL = 'static/'
 import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, "static")
@@ -133,26 +145,19 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_HOST_USER = 'hilaryemmanuel841@gmail.com'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
 # EMAIL_HOST_PASSWORD = 'pxym xlnu fgpp oxvw'
-# EMAIL_PORT = 2525
 # EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False
 
 
-# from django.core.mail import send_mail
 
-# send_mail(
-#     'Subject here',
-#     'Here is the message.',
-#     'hilaryemmanuel841@gmail.com',
-#     ['ehilary689@yahoo.com'],
-#     fail_silently=False,
-# )
+
 
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
@@ -171,3 +176,5 @@ AUTHENTICATION_BACKENDS = [
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '501163181383-hsa42r3i8fgatif3qtvg3knep62rqebj.apps.googleusercontent.com' # Google Client ID
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 LOGIN_REDIRECT_URL='/'
+
+PYTHON_VERSION = 3.7
