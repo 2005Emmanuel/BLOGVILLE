@@ -48,7 +48,7 @@ def Login(request):  #User Authentication Logic
             return redirect('/')
         else:
             messages.error(request, "Invalid Credentials")
-            return render(request, 'Authentication\Authentication_error.html')
+            return render(request, 'Authentication/Authentication_error.html') 
     return render(request, 'Authentication/Login.html' )
 
 def Logout(request):
