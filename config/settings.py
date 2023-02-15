@@ -183,8 +183,5 @@ LOGIN_REDIRECT_URL='/'
 # CORS_ALLOWED_ORIGINS = [
 #     'https://blogville-production.up.railway.app/',
 # ]
-CSRF_TRUSTED_ORIGINS = [
-    'https://blogville-production.up.railway.app/',
-   
-    ]
+CSRF_TRUSTED_ORIGINS = ['https://blogville-production.up.railway.app/', 'https://blogville-production.up.railway.app/']
 PYTHON_VERSION = 3.7
