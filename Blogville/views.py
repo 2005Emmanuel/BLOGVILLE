@@ -33,7 +33,7 @@ def Register(request): #User Registration views
         user.first_name = first_name
         user.last_name = last_name
         user.save()
-        return render(request, 'Authentication/index.html')  
+        return render(request, 'Authentication/Login.html')  
     return render(request, "Authentication/Register.html")
 
 # @csrf_exempt
