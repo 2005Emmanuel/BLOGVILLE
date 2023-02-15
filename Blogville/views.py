@@ -11,10 +11,11 @@ from .forms import Profileform, BlogPostForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 # Create your views here.
 
-
+@ensure_csrf_cookie
 def Register(request): #User Registration views
     if request.method=="POST":   
         username = request.POST['username']
@@ -35,7 +36,7 @@ def Register(request): #User Registration views
         return render(request, 'Authentication/Login.html')  
     return render(request, "Authentication/Register.html")
 
-
+@ensure_csrf_cookie
 def Login(request):  #User Authentication Logic
     if request.method == "POST":
         username = request.POST['username']
