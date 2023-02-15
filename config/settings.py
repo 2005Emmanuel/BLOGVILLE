@@ -180,9 +180,9 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '501163181383-hsa42r3i8fgatif3qtvg3knep62rqebj.a
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 LOGIN_REDIRECT_URL='/'
 
-CORS_ALLOWED_ORIGINS = [
-    'https://blogville-production.up.railway.app/',
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'https://blogville-production.up.railway.app/',
+# ]
 CSRF_TRUSTED_ORIGINS = [
     'https://blogville-production.up.railway.app/',
    
