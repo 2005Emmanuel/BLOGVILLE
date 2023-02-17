@@ -165,7 +165,7 @@ class BlogPostDetailView(DetailView):
     
 class UpdatePostView(UpdateView):
     model = Blogpost
-    template_name = 'edit_blog_post.html'
+    template_name = 'blog/edit_blog_post.html'
     fields = ['title', 'slug', 'content', 'image']
 
 def Delete_Blog_Post(request, slug):
