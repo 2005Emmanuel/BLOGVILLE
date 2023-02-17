@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'social_django',
     'django_social_share',
     'cloudinary_storage',
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
     'cloudinary',
 ]
 
