@@ -85,7 +85,7 @@
         {% for blog in blogs %}
         <div class="col-lg-4 my-4 col-md-6  ">
           <div class="card " style="width: 22rem; height: 37rem; border-radius: 50px;">
-              <img src="{{blog.image.url}}" class="card-img-top" alt="..." height="250px">
+              <img src="/media/{{blog.image.url}}" class="card-img-top" alt="..." height="250px">
               <div class="card-body">
                 <h5 class="card-title">{{blog.title}} <br><small>by {{blog.author}}</small></h5>
                 <p class="card-text">{{blog.content| truncatechars:100}}</p>
@@ -94,6 +94,9 @@
                  
                   {% if blog.author.profile.image %}
                   <img src="{{blog.author.profile.image.url}}" alt="" width="30px" height="30px" class="rounded-circle">
+                  {% else %}
+                  {% load static %}
+                  <img src="{% static 'images\kindpng_4212275.png' %}"  alt="" width="30px" height="30px" class="rounded-circle">
                   {% endif %}{{blog.author}}   
                 </small> </a>
                 {% if user.is_authenticated %}
