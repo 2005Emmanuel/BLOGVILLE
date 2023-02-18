@@ -85,7 +85,7 @@
         {% for blog in blogs %}
         <div class="col-lg-4 my-4 col-md-6  ">
           <div class="card " style="width: 22rem; height: 37rem; border-radius: 50px;">
-              <img src="/media/{{blog.image.url}}" class="card-img-top" alt="..." height="250px">
+              <img src="{{blog.image.url}}" class="card-img-top" alt="..." height="250px">
               <div class="card-body">
                 <h5 class="card-title">{{blog.title}} <br><small>by {{blog.author}}</small></h5>
                 <p class="card-text">{{blog.content| truncatechars:100}}</p>

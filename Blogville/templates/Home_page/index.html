@@ -113,7 +113,7 @@
             <div class="col-lg-4 my-4 col-md-6  ">
                 <div class="card " style="width: 22rem; height: 37rem; border-radius: 50px;">
                     {% comment %} <img src="/media/{{post.image}}" class="card-img-top" alt="..." height="250px"> {% endcomment %}
-                    <img src="/media/{{post.image.url}}" class="card-img-top" alt="..." height="250px">
+                    <img src="{{post.image.url}}" class="card-img-top" alt="..." height="250px">
                     <div class="card-body">
                       <h5 class="card-title">{{post.title}} <br><small>by {{post.author}}</small></h5>
                       <p class="card-text">{{post.content| truncatechars:100}}</p>
