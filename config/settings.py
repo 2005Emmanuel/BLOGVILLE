@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-ryoqdw87f^h5y!a*ay#ufg2r775h7k+emu3rapr=67srs87k%g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://blogville-production.up.railway.app/']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'https://blogville-production.up.railway.app/']
 
 
 # Application definition
