@@ -83,12 +83,14 @@
             <div class="row">
                 <div class="col-md-6 col-lg-4">
                     <div class="profile-img">
+                        <a href="/edit_profile/">
                         {% if user.profile.image %}
                         <img src="{{user.profile.image.url}}" alt="" width="270px" height="270px" class="rounded-circle">
                         {% else %}
                         {% load static %}
                         <img src="{% static 'images\kindpng_4212275.png' %}" alt="" width="270px" height="270px" class="rounded-circle">
                         {% endif %}
+                       </a>
                     </div>
                 </div>
                 <div class="col-md-8">
