@@ -37,6 +37,10 @@
                   </li>
 
                   <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blogs' %}">Blog feed</a>
+                  </li>
+
+                  <li class="nav-item">
                     <a class="nav-link" href="/profile/">
                     {% if user.profile.image %}
                     <img src="{{user.profile.image.url}}" alt="" width="30px" height="30px" class="rounded-circle">
