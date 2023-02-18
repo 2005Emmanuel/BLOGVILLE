@@ -125,7 +125,8 @@
                         {% else %}
                         {% load static %}
                         <img src="{% static 'images\kindpng_4212275.png' %}"  alt="" width="30px" height="30px" class="rounded-circle">
-                        {% endif %}{{post.author}}   
+                        {{post.author}} 
+                        {% endif %}  
                       </small> </a>
                       {% if user.is_authenticated %}
                      
