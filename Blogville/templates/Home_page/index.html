@@ -117,16 +117,16 @@
                     <div class="card-body">
                       <h5 class="card-title">{{post.title}} <br><small>by {{post.author}}</small></h5>
                       <p class="card-text">{{post.content| truncatechars:100}}</p>
-                      <h5 class="card-title text-bold" > <a href="/user_profile/{{post.author.id}}/" class="text-decoration-none" style="color:black"> <br><small>
+                      <h5 class="card-title text-bold" > 
+                      <a href="/user_profile/{{post.id}}/" class="text-decoration-none" style="color:black"> <br><small>
                     
-                       
+      
                         {% if post.author.profile.image %}
                         <img src="{{post.author.profile.image.url}}" alt="" width="30px" height="30px" class="rounded-circle">
                         {% else %}
                         {% load static %}
                         <img src="{% static 'images\kindpng_4212275.png' %}"  alt="" width="30px" height="30px" class="rounded-circle">
-                        {{post.author}} 
-                        {% endif %}  
+                        {% endif %}{{post.author}}   
                       </small> </a>
                       {% if user.is_authenticated %}
                      
