@@ -28,7 +28,7 @@ def Register(request): #User Registration views
         
         if password1 != password2:
             messages.error(request, "Passwords do not match.")
-            return redirect('Register')
+            return redirect(Register)
  
         user = User.objects.create_user(username, email, password1)
         user.first_name = first_name
@@ -141,7 +141,7 @@ def unfollow(request, user_id):
     return redirect(user_profile, user_id)
 
 
-
+@csrf_exempt
 def BlogPostLike(request, pk):
     post = get_object_or_404(Blogpost, id=request.POST.get('blogpost_id'))
     if post.likes.filter(id=request.user.id).exists():
@@ -166,6 +166,7 @@ class BlogPostDetailView(DetailView):
         data['number_of_likes'] = likes_connected.number_of_likes()
         data['post_is_liked'] = liked
         return data
+
     
 class UpdatePostView(UpdateView):
     model = Blogpost
