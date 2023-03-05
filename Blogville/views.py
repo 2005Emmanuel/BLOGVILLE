@@ -68,18 +68,32 @@ def user_profile(request, myid):
 @csrf_exempt
 def edit_profile(request):
     try:
-        Profile = request.user.profile
+        profile = request.user.profile
     except Profile.DoesNotExist:
-        Profile = Profile(user=request.user)
+        profile = Profile(user=request.user)
     if request.method=="POST":
-        form = Profileform(data=request.POST, files=request.FILES, instance=Profile)
+        form = Profileform(data=request.POST, files=request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            # alert = True
-            return redirect(profile)
+            alert = True
+            return render(request, "profiles/edit_profile.html", {'alert':alert})
     else:
-        form=Profileform(instance=Profile)
+        form=Profileform(instance=profile)
     return render(request, "profiles/edit_profile.html", {'form':form})
+# def edit_profile(request):
+#     try:
+#         profile = request.user.profile
+#     except Profile.DoesNotExist:
+#         Profile = Profile(user=request.user)
+#     if request.method=="POST":
+#         form = Profileform(data=request.POST, files=request.FILES, instance=Profile)
+#         if form.is_valid():
+#             form.save()
+#             # alert = True
+#             return redirect(profile)
+#     else:
+#         form=Profileform(instance=Profile)
+#     return render(request, "profiles/edit_profile.html", {'form':form})
 
 
 
