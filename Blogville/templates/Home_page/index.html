@@ -123,6 +123,7 @@
       
                         {% if post.author.profile.image %}
                         <img src="{{post.author.profile.image.url}}" alt="" width="30px" height="30px" class="rounded-circle">
+                        {% comment %} <img src="{{post.author.profile.image.url}}" alt="" width="30px" height="30px" class="rounded-circle"> {% endcomment %}
                         {% else %}
                         {% load static %}
                         <img src="{% static 'images\kindpng_4212275.png' %}"  alt="" width="30px" height="30px" class="rounded-circle">

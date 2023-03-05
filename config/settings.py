@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -84,22 +84,22 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
-     'default' : {
-         'ENGINE' : 'django.db.backends.postgresql',
-         'NAME': 'railway',
-         'USER': 'postgres',
-         'PASSWORD': '18BAmqiyI84768HIfCXJ',
-         'HOST' : 'containers-us-west-46.railway.app',
-         'PORT' : '6629',
-     }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+# DATABASES = {
+#      'default' : {
+#          'ENGINE' : 'django.db.backends.postgresql',
+#          'NAME': 'railway',
+#          'USER': 'postgres',
+#          'PASSWORD': '18BAmqiyI84768HIfCXJ',
+#          'HOST' : 'containers-us-west-46.railway.app',
+#          'PORT' : '6629',
+#      }
+# }
 
 
 # Password validation
@@ -193,5 +193,5 @@ LOGIN_REDIRECT_URL='/'
 # CORS_ALLOWED_ORIGINS = [
 #     'https://blogville-production.up.railway.app/',
 # ]
-CSRF_TRUSTED_ORIGINS = ['https://blogville-production.up.railway.app/', 'https://blogville-production.up.railway.app/']
+# CSRF_TRUSTED_ORIGINS = ['https://blogville-production.up.railway.app/', 'https://blogville-production.up.railway.app/']
 PYTHON_VERSION = 3.7

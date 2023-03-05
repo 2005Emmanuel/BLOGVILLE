@@ -11,11 +11,12 @@ from .forms import Profileform, BlogPostForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
 # from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
-# @csrf_exempt
+@csrf_exempt
 def Register(request): #User Registration views
     if request.method=="POST":   
         username = request.POST['username']
@@ -36,7 +37,7 @@ def Register(request): #User Registration views
         return render(request, 'Authentication/Login.html')  
     return render(request, "Authentication/Register.html")
 
-# @csrf_exempt
+@csrf_exempt
 def Login(request):  #User Authentication Logic
     if request.method == "POST":
         username = request.POST['username']
@@ -64,19 +65,20 @@ def user_profile(request, myid):
     post = Blogpost.objects.filter(id=myid)
     return render(request, 'profiles/user_profile.html', {'post' : post})
 
+@csrf_exempt
 def edit_profile(request):
     try:
-        profile = request.user.profile
+        Profile = request.user.profile
     except Profile.DoesNotExist:
-        profile = Profile(user=request.user)
+        Profile = Profile(user=request.user)
     if request.method=="POST":
-        form = Profileform(data=request.POST, files=request.FILES, instance=profile)
+        form = Profileform(data=request.POST, files=request.FILES, instance=Profile)
         if form.is_valid():
             form.save()
-            alert = True
-            return render(request, "profiles/edit_profile.html", {'alert':alert})
+            # alert = True
+            return redirect(profile)
     else:
-        form=Profileform(instance=profile)
+        form=Profileform(instance=Profile)
     return render(request, "profiles/edit_profile.html", {'form':form})
 
 
@@ -84,7 +86,8 @@ def edit_profile(request):
   
             
 
-#Blogs Logic     
+#Blogs Logic    
+@csrf_exempt 
 @login_required(login_url='/login')
 def add_Blog(request):
     if request.method == "POST":
@@ -105,7 +108,7 @@ def blogs(request):
     posts = Blogpost.objects.filter().order_by('-datetime')  
     return render(request, 'Home_page/index.html', {'posts': posts})
 
-
+@csrf_exempt
 def blog_comments(request, slug):
     post = Blogpost.objects.filter(slug=slug).first()
     comments = Comment.objects.filter(blog=post)
@@ -117,6 +120,7 @@ def blog_comments(request, slug):
         comment.save()
     return render(request, 'blog/blog_comments.html', {'post':post , 'comments' : comments})
 
+@csrf_exempt
 def blog_search(request):
     if request.method == "POST":
         searched = request.POST['searched']

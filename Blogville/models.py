@@ -6,7 +6,7 @@ from django.utils.timezone import now
 # Create your models here.
 class Profile(models.Model): #User profile model(Table)
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True )
-    image = models.ImageField(upload_to='profile_pictures', default='media\profile_pictures\kindpng_4212275.png', blank=True, null=True)
+    image = models.ImageField(upload_to='profile_pictures',  blank=True, null=True) #default='media\profile_pictures\kindpng_4212275.png',
     bio = models.TextField(blank=True, null=True)
     facebook = models.CharField(max_length=300, blank=True, null=True)
     instagram = models.CharField(max_length=300, blank=True, null=True)
