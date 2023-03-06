@@ -137,6 +137,30 @@
                                                 <p>{{i.author}}</p>
                                             </div>
                                         </div>
+                                        
+                                        {% comment %} <div class="col-md-6">
+                                          <b> following : </b>
+                                          </div>
+                                          <div class="col-md-6">
+                                          <p class="text-muted"> {{i.author.following.count}}</p>
+                                          {% comment %} &nbsp;&nbsp;&nbsp;&nbsp; {% endcomment %}
+                                          {% comment %} </div>
+                                          <div class="col-md-6">
+                                          <b> followers : </b>
+                                          </div>
+                                          <div class="col-md-6">
+                                          <p class="text-muted">  {{i.author.followers.count}}  </p>
+                                          </div>
+                                        </div>
+                                       
+                                        <a  href="/follow/{{i.author.id}}/" class="btn btn-primary">
+                                          <i class="fa-solid fa-user-plus"></i><span class="p-3">follow</span></a>
+
+                                        <a href="/unfollow/{{i.author.id}}/" class="btn btn-primary">
+                                          <i class="fa-solid fa-user-minus"></i><span class="p-3">unfollow</span> </a>
+                                        </div>
+                                        <br>  {% endcomment %}
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Full Name:</label>
@@ -189,26 +213,7 @@
                                             <div class="col-md-6">
                                                 <p><a href="{{i.author.profile.facebook}}">{{i.author.profile.facebook}}</a></p>
                                             </div>
-                                            <div class="col-md-6">
-                                            <b> following : </b>
-                                            </div>
-                                            <div class="col-md-6">
-                                            <p class="text-muted"> {{i.author.following.count}}</p>
-                                            {% comment %} &nbsp;&nbsp;&nbsp;&nbsp; {% endcomment %}
-                                            </div>
-                                            <div class="col-md-6">
-                                            <b> followers : </b>
-                                            </div>
-                                            <div class="col-md-6">
-                                            <p class="text-muted">  {{i.author.followers.count}}  </p>
-                                            </div>
-                                          </div>
-                                         
-                                          <a  href="/follow/{{i.author.id}}/" class="btn btn-primary">
-                                            <i class="fa-solid fa-user-plus"></i><span class="p-3">follow</span></a>
-
-                                          <a href="/unfollow/{{i.author.id}}/" class="btn btn-primary">
-                                            <i class="fa-solid fa-user-minus"></i><span class="p-3">unfollow</span> </a>
+                                          
                                      
                                         </div>
                                         {% comment %} <div class="toast mt-3" data-autohide="false">
