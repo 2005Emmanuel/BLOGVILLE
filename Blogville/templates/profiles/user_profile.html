@@ -109,6 +109,21 @@
                             <img src="{% static 'images\kindpng_4212275.png' %}"  alt="" width="270px" height="270px" class="rounded-circle">
                             {% endif %}
                         </div>
+
+                        <div class="toast mt-3" data-autohide="false">
+                          <div class="toast-header">
+                            <strong class="mr-auto text-primary">{{i.title}}</strong>
+                            {% comment %} <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button> {% endcomment %}
+                          </div>
+                          <div class="toast-body">
+                            <strong class="text-secondary">{{i.number_of_likes}}people Liked
+                              <h6 class="card-title">{{i.title}} <br><small>by {{i.author}}</small></h6>
+                               {{ number_of_likes|pluralize }} posted on</strong><small class="text-muted"> {{i.datetime}}</small>
+                            {% comment %} {% endif %}
+                            {% endfor %}    {% endcomment %}
+                          </div>
+                        </div>
+                     
                     </div>
                     <div class="col-md-8">
                         <div class="profile-tab">
@@ -196,11 +211,11 @@
                                             <i class="fa-solid fa-user-minus"></i><span class="p-3">unfollow</span> </a>
                                      
                                         </div>
-                                        <div class="toast mt-3" data-autohide="false">
+                                        {% comment %} <div class="toast mt-3" data-autohide="false">
                                           <div class="toast-header">
-                                            <strong class="mr-auto text-primary">{{i.title}}</strong>
+                                            <strong class="mr-auto text-primary">{{i.title}}</strong> {% endcomment %}
                                             {% comment %} <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button> {% endcomment %}
-                                          </div>
+                                          {% comment %} </div>
                                           <div class="toast-body">
                                             <strong class="text-secondary">{{i.number_of_likes}}people Liked
                                               <h6 class="card-title">{{i.title}} <br><small>by {{i.author}}</small></h6>
@@ -208,7 +223,9 @@
                                             {% endif %}
                                             {% endfor %}   
                                           </div>
-                                        </div>
+                                        </div> {% endcomment %}
+                                        {% endif %}
+                                        {% endfor %}  
                                       </div>
                                       
                                       <script>
