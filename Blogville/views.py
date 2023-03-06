@@ -34,8 +34,8 @@ def Register(request): #User Registration views
         user.first_name = first_name
         user.last_name = last_name
         user.save()
-        return render(request, 'Authentication/Login.html')  
-    return render(request, "Authentication/Register.html")
+        return render(request, 'Home_page/index.html')  
+    return render(request, 'Home_page/index.html')
 
 @csrf_exempt
 def Login(request):  #User Authentication Logic
@@ -50,7 +50,7 @@ def Login(request):  #User Authentication Logic
         else:
             messages.error(request, "Invalid Credentials")
             return render(request, 'Authentication/Authentication_error.html') 
-    return render(request, 'Authentication/Login.html' )
+    return render(request, 'Home_page/index.html' )
 
 def Logout(request):
     logout(request)
@@ -76,7 +76,7 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             alert = True
-            return render(request, "profiles/edit_profile.html", {'alert':alert})
+            return render(request, "profiles/Profile.html", {'alert':alert})
     else:
         form=Profileform(instance=profile)
     return render(request, "profiles/edit_profile.html", {'form':form})
